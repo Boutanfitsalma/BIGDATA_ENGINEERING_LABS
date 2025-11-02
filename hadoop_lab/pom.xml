@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>edu.ensias.hadoop</groupId>
+    <artifactId>hadoop_lab</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <hadoop.version>3.2.0</hadoop.version>
+    </properties>
+
+    <dependencies>
+        <!-- Hadoop core dependencies -->
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-hdfs</artifactId>
+            <version>${hadoop.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-common</artifactId>
+            <version>${hadoop.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-mapreduce-client-core</artifactId>
+            <version>${hadoop.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <!-- Compiler -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <!-- Unique JAR plugin with multiple executions -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.2</version>
+                <executions>
+
+                    <execution>
+                        <id>HadoopFileStatus</id>
+                        <phase>package</phase>
+                        <goals><goal>jar</goal></goals>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>edu.ensias.hadoop.hdfslab.HadoopFileStatus</mainClass>
+                                </manifest>
+                            </archive>
+                            <classifier>HadoopFileStatus</classifier>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>ReadHDFS</id>
+                        <phase>package</phase>
+                        <goals><goal>jar</goal></goals>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>edu.ensias.hadoop.hdfslab.ReadHDFS</mainClass>
+                                </manifest>
+                            </archive>
+                            <classifier>ReadHDFS</classifier>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>WriteHDFS</id>
+                        <phase>package</phase>
+                        <goals><goal>jar</goal></goals>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>edu.ensias.hadoop.hdfslab.WriteHDFS</mainClass>
+                                </manifest>
+                            </archive>
+                            <classifier>WriteHDFS</classifier>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>WordCount</id>
+                        <phase>package</phase>
+                        <goals><goal>jar</goal></goals>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>edu.ensias.hadoop.mapreducelab.WordCount</mainClass>
+                                </manifest>
+                            </archive>
+                            <classifier>WordCount</classifier>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>PurchaseAnalysis</id>
+                        <phase>package</phase>
+                        <goals><goal>jar</goal></goals>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>edu.ensias.hadoop.mapreducelab.PurchaseAnalysis</mainClass>
+                                </manifest>
+                            </archive>
+                            <classifier>PurchaseAnalysis</classifier>
+                        </configuration>
+                    </execution>
+
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
